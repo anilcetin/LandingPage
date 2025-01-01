@@ -17,20 +17,48 @@ const Hero = () => {
               AI, SaaS, E-ticaret ve Özel Yazılım çözümleriyle işletmenizi dijital dönüşüm yolculuğunda ileriye taşıyoruz.
             </p>
             <div className="flex flex-wrap gap-4">
-              <motion.button
+              <motion.a
+                href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary px-8 py-3"
+                className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-xl font-medium shadow-lg hover:bg-blue-700 transition-colors group"
               >
-                Hemen Başlayın
-              </motion.button>
-              <motion.button
+                <span>Ücretsiz Danışmanlık</span>
+                <svg 
+                  className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                  />
+                </svg>
+              </motion.a>
+              <motion.a
+                href="#services"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary px-8 py-3"
+                className="inline-flex items-center px-8 py-4 border-2 border-blue-500 text-white rounded-xl font-medium hover:bg-blue-500/10 transition-colors group"
               >
-                Hizmetlerimiz
-              </motion.button>
+                <svg 
+                  className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M19 9l-7 7-7-7" 
+                  />
+                </svg>
+                <span>Hizmetlerimizi Keşfedin</span>
+              </motion.a>
             </div>
           </motion.div>
           

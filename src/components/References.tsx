@@ -94,12 +94,12 @@ const References = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+              className="flex items-center justify-center group"
             >
               <img
                 src={client}
                 alt="Client logo"
-                className="h-12 object-contain"
+                className="h-12 object-contain filter brightness-0 invert opacity-60 group-hover:opacity-100 transition-all duration-300"
               />
             </motion.div>
           ))}

@@ -4,7 +4,7 @@ import Hero from './components/Hero.tsx';
 import Features from './components/Features.tsx';
 import Solutions from './components/Solutions.tsx';
 import References from './components/References.tsx';
-import ContactForm from './components/Testimonials.tsx';
+import ContactForm from './components/ContactForm.tsx';
 import Footer from './components/Footer.tsx';
 
 function App() {

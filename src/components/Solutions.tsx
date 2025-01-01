@@ -61,11 +61,11 @@ const Solutions = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-[#1a1a2e] rounded-xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-48 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6">
                 <img
                   src={solution.image}
                   alt={solution.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain filter brightness-0 invert opacity-75 group-hover:opacity-100 transition-opacity"
                 />
               </div>
               <div className="p-6">

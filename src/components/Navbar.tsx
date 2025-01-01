@@ -87,7 +87,7 @@ const Navbar = () => {
                 className={`
                   px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
                   ${activeSection === item.href.replace('#', '')
-                    ? 'text-blue-500 bg-blue-500/10'
+                    ? 'text-white bg-blue-500/10'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }
                 `}
@@ -148,7 +148,7 @@ const Navbar = () => {
                 className={`
                   block px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
                   ${activeSection === item.href.replace('#', '')
-                    ? 'text-blue-500 bg-blue-500/10'
+                    ? 'text-white bg-blue-500/10'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }
                 `}
