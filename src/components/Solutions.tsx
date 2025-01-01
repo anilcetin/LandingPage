@@ -59,7 +59,7 @@ const Solutions = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#1a1a2e] rounded-xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
+              className="bg-[#1a1a2e] rounded-xl overflow-hidden group hover:shadow-2xl transition-all duration-300 border border-white/5 hover:border-blue-500/20"
             >
               <div className="h-48 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6">
                 <img
