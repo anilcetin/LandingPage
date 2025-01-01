@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" fill="none">
+  <rect x="35" y="15" width="20" height="35" rx="3" stroke="currentColor" stroke-width="2" fill="none"/>
+  <circle cx="45" cy="42" r="2" fill="currentColor"/>
+  <path d="M40 20 L50 20" stroke="currentColor" stroke-width="2"/>
+  <text x="65" y="38" font-family="Arial" font-size="24" font-weight="bold" fill="currentColor">
+    MOB
+  </text>
+</svg> 

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" fill="none">
+  <path d="M25 15 L40 15 L55 30 L40 45 L25 45 L40 30 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <text x="65" y="38" font-family="Arial" font-size="24" font-weight="bold" fill="currentColor">
+    AI
+  </text>
+</svg> 

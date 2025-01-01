@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" fill="none">
+  <path d="M30 35 C30 25 40 25 45 30 C45 20 60 20 60 30 C65 30 70 35 65 40 L35 40 C25 40 25 35 30 35" stroke="currentColor" stroke-width="2" fill="none"/>
+  <text x="75" y="38" font-family="Arial" font-size="24" font-weight="bold" fill="currentColor">
+    CLOUD
+  </text>
+</svg> 
