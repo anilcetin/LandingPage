@@ -1,4 +1,4 @@
-# Uygulama.app
+# Landing.app
 
 [English](#english) | [Türkçe](#turkish)
 
@@ -39,7 +39,7 @@ npm run dev
 ```
 
 ### İletişim
-- 📧 E-posta: info@uygulama.app
+- 📧 E-posta: info@landing.app
 - 📱 Telefon: +90 (212) XXX XX XX
 - 📍 Konum: İstanbul, Türkiye
 
@@ -82,7 +82,7 @@ npm run dev
 ```
 
 ### Contact
-- 📧 Email: info@uygulama.app
+- 📧 Email: info@landing.app
 - 📱 Phone: +90 (212) XXX XX XX
 - 📍 Location: Istanbul, Turkey
 
