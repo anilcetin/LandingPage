@@ -1,15 +1,32 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+interface FormData {
+  nameSurname: string;
+  email: string;
+  companyName: string;
+  branch: string;
+  title: string;
+  message: string;
+}
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
+  const [formData, setFormData] = useState<FormData>({
+    nameSurname: '',
     email: '',
-    company: '',
-    service: '',
-    subject: '',
+    companyName: '',
+    branch: '',
+    title: '',
     message: ''
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const services = [
     'AI Çözümleri',
@@ -19,10 +36,52 @@ const ContactForm = () => {
     'Diğer'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch(`${API_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic YWRtaW46YWRtaW4xMjM='
+        },
+        body: JSON.stringify({
+          nameSurname: formData.nameSurname,
+          email: formData.email,
+          companyName: formData.companyName,
+          branch: formData.branch,
+          title: formData.title,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.'
+      });
+      setFormData({
+        nameSurname: '',
+        email: '',
+        companyName: '',
+        branch: '',
+        title: '',
+        message: ''
+      });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Bir hata oluştu'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -48,6 +107,18 @@ const ContactForm = () => {
           </p>
         </motion.div>
 
+        {submitStatus.type && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`p-4 rounded-lg mb-6 ${
+              submitStatus.type === 'success' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
+            }`}
+          >
+            {submitStatus.message}
+          </motion.div>
+        )}
+
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,14 +128,14 @@ const ContactForm = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="nameSurname" className="block text-sm font-medium text-gray-300 mb-2">
                 Ad Soyad
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="nameSurname"
+                name="nameSurname"
+                value={formData.nameSurname}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[#1E293B] rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-white"
                 required
@@ -89,27 +160,27 @@ const ContactForm = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="companyName" className="block text-sm font-medium text-gray-300 mb-2">
                 Şirket Adı
               </label>
               <input
                 type="text"
-                id="company"
-                name="company"
-                value={formData.company}
+                id="companyName"
+                name="companyName"
+                value={formData.companyName}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[#1E293B] rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-white"
               />
             </div>
 
             <div>
-              <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="branch" className="block text-sm font-medium text-gray-300 mb-2">
                 İlgilendiğiniz Hizmet
               </label>
               <select
-                id="service"
-                name="service"
-                value={formData.service}
+                id="branch"
+                name="branch"
+                value={formData.branch}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[#1E293B] rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-white"
                 required
@@ -125,14 +196,14 @@ const ContactForm = () => {
           </div>
 
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+            <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">
               Konu
             </label>
             <input
               type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
+              id="title"
+              name="title"
+              value={formData.title}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-[#1E293B] rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-white"
               required
@@ -162,22 +233,37 @@ const ContactForm = () => {
           >
             <button
               type="submit"
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-xl font-medium shadow-lg hover:bg-blue-700 transition-all duration-300 group w-full md:w-auto"
+              disabled={isSubmitting}
+              className={`inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-xl font-medium shadow-lg transition-all duration-300 group w-full md:w-auto ${
+                isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
+              }`}
             >
-              <span>Mesajı Gönder</span>
-              <svg 
-                className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" 
-                />
-              </svg>
+              {isSubmitting ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Gönderiliyor...
+                </>
+              ) : (
+                <>
+                  <span>Mesajı Gönder</span>
+                  <svg 
+                    className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" 
+                    />
+                  </svg>
+                </>
+              )}
             </button>
           </motion.div>
         </motion.form>
